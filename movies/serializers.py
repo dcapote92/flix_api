@@ -10,7 +10,17 @@ class MovieModelSerializer(serializers.ModelSerializer):
 
     def get_rate(self, obj):
         reviews = obj.reviews.all()
-        return 5
+
+        if reviews:
+            sum_reviews = 0
+            reviews_count = reviews.count()
+        
+            for review in reviews:
+                sum_reviews+= review.stars
+        
+            return round(sum_reviews/ reviews_count, 1)
+        
+        return None
 
     def validate_release_date(self, value):
         if value.year < 1900:
