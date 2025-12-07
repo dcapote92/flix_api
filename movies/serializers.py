@@ -3,8 +3,6 @@ from rest_framework import serializers
 from genres.serializers import GenreSerializer
 from actors.serializers import ActorSerializer
 from movies.models import Movie
-from genres.models import Genre
-from actors.models import Actor
 
 
 class MovieModelSerializer(serializers.ModelSerializer):
