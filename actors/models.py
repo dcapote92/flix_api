@@ -1,9 +1,10 @@
 from django.db import models
 
-NATIONALITY_CHOICES= (
+NATIONALITY_CHOICES = (
     ('BRAZIL', 'Brasil'),
     ('USA', 'Estados Unidos'),
 )
+
 
 class Actor(models.Model):
     name = models.CharField(max_length=200)

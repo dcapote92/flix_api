@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -10,8 +11,8 @@ urlpatterns = [
     path('api/v1/', include('movies.urls')),
     path('api/v1/', include('reviews.urls')),
 
-    # Se num futuro for versionar as urls/recursos esse seria o padrão: 
-    # path('api/v2/', include('actors.urls_v2')) 
+    # Se num futuro for versionar as urls/recursos esse seria o padrão:
+    # path('api/v2/', include('actors.urls_v2'))
     # path('api/v3/', include('actors.urls_v3'))
-    # isso permite manter varias versões rodando mantendo o legado 
+    # isso permite manter varias versões rodando mantendo o legado
 ]

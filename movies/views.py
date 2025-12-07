@@ -6,15 +6,18 @@ from movies.models import Movie
 from movies.serializers import MovieModelSerializer, MovieStatsSerializer
 from reviews.models import Review
 
+
 class MovieCreateListView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
     queryset = Movie.objects.all()
     serializer_class = MovieModelSerializer
 
+
 class MovieRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
     queryset = Movie.objects.all()
     serializer_class = MovieModelSerializer
+
 
 # Custom View to return custom data
 class MovieStatsView(views.APIView):
@@ -25,7 +28,7 @@ class MovieStatsView(views.APIView):
         total_movies = self.queryset.count()
         movies_by_genre = self.queryset.values('genre__name').annotate(count=Count('id'))
         total_reviews = Review.objects.all().count()
-        avg_stars =Review.objects.aggregate(avg_stars=Avg('stars'))['avg_stars']
+        avg_stars = Review.objects.aggregate(avg_stars=Avg('stars'))['avg_stars']
 
         data = {
             'total_movies': total_movies,
@@ -37,7 +40,4 @@ class MovieStatsView(views.APIView):
         serializer = MovieStatsSerializer(data=data)
         serializer.is_valid(raise_exception=True)
 
-        return response.Response(data = serializer.validated_data, status=status.HTTP_200_OK)
-
-    
-
+        return response.Response(data=serializer.validated_data, status=status.HTTP_200_OK)
