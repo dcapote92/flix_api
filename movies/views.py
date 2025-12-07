@@ -3,7 +3,7 @@ from rest_framework import generics, views, response, status
 from rest_framework.permissions import IsAuthenticated
 from app.permissions import GlobalDefaultPermission
 from movies.models import Movie
-from movies.serializers import MovieModelSerializer
+from movies.serializers import MovieModelSerializer, MovieStatsSerializer
 from reviews.models import Review
 
 class MovieCreateListView(generics.ListCreateAPIView):
@@ -34,9 +34,10 @@ class MovieStatsView(views.APIView):
             'average_stars': round(avg_stars, 1) if avg_stars else 0
         }
 
-        
+        serializer = MovieStatsSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
 
-        return response.Response(data, status=status.HTTP_200_OK)
+        return response.Response(data = serializer.validated_data, status=status.HTTP_200_OK)
 
     
 
