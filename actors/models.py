@@ -3,6 +3,13 @@ from django.db import models
 NATIONALITY_CHOICES = (
     ('BRAZIL', 'Brasil'),
     ('USA', 'Estados Unidos'),
+    ('AUS', 'Australia'),
+    ('GBR', 'Gran Bretanha'),
+    ('CAN', 'Canada'),
+    ('ESP', 'Espanha'),
+    ('RSA', 'Africa do Sul'),
+    ('USA-GBR', 'Estados Unidos - Gran Bretanha'),
+    ('GBR-AUS', 'Gran Bretanha - Australia'),
 )
 
 

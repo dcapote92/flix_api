@@ -23,6 +23,8 @@ class Command(BaseCommand):
                 birthday = datetime.strptime(row['birthday'], '%Y-%m-%d').date()
                 nationality = row['nationality']
 
+                self.stdout.write(self.style.WARNING(name))
+
                 Actor.objects.create(
                     name=name,
                     birthday=birthday,
